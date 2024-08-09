@@ -1,18 +1,16 @@
-import pages from '@hono/vite-cloudflare-pages'
-import adapter from '@hono/vite-dev-server/cloudflare'
-import honox from 'honox/vite'
-import client from "honox/vite/client"
-import ssg from "@hono/vite-ssg"
-import mdx from "@mdx-js/rollup"
-import rehypeHighlight from "rehype-highlight"
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import pages from "@hono/vite-cloudflare-pages";
+import adapter from "@hono/vite-dev-server/cloudflare";
+import honox from "honox/vite";
+import client from "honox/vite/client";
+import ssg from "@hono/vite-ssg";
+import mdx from "@mdx-js/rollup";
+import rehypeHighlight from "rehype-highlight";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
-
-
-const entry = "./app/server.ts"
+const entry = "./app/server.ts";
 
 export default defineConfig(({ mode }) => {
   if (mode === "client") {
@@ -22,16 +20,16 @@ export default defineConfig(({ mode }) => {
         rollupOptions: {
           input: ["/app/style.css"],
           output: {
-            assetFileNames: "static/assets/[name].[ext]"
-          }
-        }
-      }
-    }
+            assetFileNames: "static/assets/[name].[ext]",
+          },
+        },
+      },
+    };
   }
 
   return {
     build: {
-      emptyOutDir: false
+      emptyOutDir: false,
     },
 
     plugins: [
@@ -40,11 +38,9 @@ export default defineConfig(({ mode }) => {
       mdx({
         jsxImportSource: "hono/jsx",
         remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-        rehypePlugins: [rehypeHighlight]
+        rehypePlugins: [rehypeHighlight],
       }),
-      ssg({ entry })
-    ]
-  }
-})
-
-
+      ssg({ entry }),
+    ],
+  };
+});

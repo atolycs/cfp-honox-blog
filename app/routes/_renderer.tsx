@@ -1,6 +1,8 @@
-import { Style } from 'hono/css'
-import { jsxRenderer } from 'hono/jsx-renderer'
-import { Script } from 'honox/server'
+import { Style } from "hono/css";
+import { jsxRenderer } from "hono/jsx-renderer";
+import { Script } from "honox/server";
+
+import { Footer } from "../layout/Footer";
 
 export default jsxRenderer(({ children, title }) => {
   return (
@@ -11,9 +13,15 @@ export default jsxRenderer(({ children, title }) => {
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
         <Script src="/app/client.ts" async />
+        {import.meta.env.PROD ? (
+          <link rel="stylesheet" href="/static/app/client.css" />
+        ) : (
+          <link rel="stylesheet" href="/app/client.css" />
+        )}
         <Style />
       </head>
       <body>{children}</body>
+      <Footer />
     </html>
-  )
-})
+  );
+});

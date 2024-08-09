@@ -5,7 +5,10 @@
     "dev": "vite",
     "build": "vite build --mode client && vite build",
     "preview": "wrangler pages dev",
-    "deploy": "$npm_execpath run build && wrangler pages deploy"
+    "deploy": "$npm_execpath run build && wrangler pages deploy",
+    "lint": "biome lint .",
+    "check": "biome check .",
+    "format": "biome format --fix ."
   },
   "private": true,
   "dependencies": {
