@@ -6,6 +6,10 @@ export const SITE: SITEDefine = {
   author: "Atolycs",
 };
 
+export const LOCALE = {
+    lang: "ja",
+} as const;
+
 export const SOCIALS: SocialsDefine = [
   {
     name: "Github",

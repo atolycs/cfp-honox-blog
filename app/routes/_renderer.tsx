@@ -1,12 +1,16 @@
 import { Style } from "hono/css";
 import { jsxRenderer } from "hono/jsx-renderer";
 import { Script } from "honox/server";
+import { SITE, LOCALE } from '../config/site_config'
 
 import { Footer } from "../layout/Footer";
 
 export default jsxRenderer(({ children, title }) => {
+
+  title = title ? `${title} - ${SITE.title}` : SITE.title;
+
   return (
-    <html lang="en">
+    <html lang={LOCALE.lang}>
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
