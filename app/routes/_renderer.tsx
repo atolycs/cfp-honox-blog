@@ -1,12 +1,11 @@
 import { Style } from "hono/css";
 import { jsxRenderer } from "hono/jsx-renderer";
 import { Script } from "honox/server";
-import { SITE, LOCALE } from '../config/site_config'
+import { SITE, LOCALE } from "../config/site_config";
 
 import { Footer } from "../layout/Footer";
 
 export default jsxRenderer(({ children, title }) => {
-
   title = title ? `${title} - ${SITE.title}` : SITE.title;
 
   return (
