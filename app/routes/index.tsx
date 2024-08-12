@@ -1,7 +1,7 @@
 import type { FC } from "hono/jsx";
 import { css } from "hono/css";
 
-import { baseName } from "../util/tools";
+import { getPosts } from "../lib/getPost"
 
 const className = css`
   font-family: sans-serif;
@@ -22,7 +22,7 @@ export default function Top() {
 }
 
 const Posts: FC = () => {
-  const posts = import.meta.glob<{
+/*   const posts = import.meta.glob<{
     frontmatter: {
       title: string;
       date: string;
@@ -32,28 +32,24 @@ const Posts: FC = () => {
 
   const entries = Object.entries(posts).filter(
     ([_, post]) => post.frontmatter.published,
-  );
+  ); */
 
+  const entries = getPosts()
+
+
+  console.log(entries)
   return (
     <div class="mt-16">
       <ul class="mt-10">
-        {entries.map(([id, module]) => (
-          <li id={id} class="text-lg mt-2 md:mt-1">
-            <span class="tabular-nums tnum">
-              {new Date(module.frontmatter.date).toLocaleDateString()}:
-            </span>
-            <br class="block md:hidden" />
-            <span id="debug">
-              {baseName(`posts/${id}`)}
-            </span>
-            <a
-              href={`posts/${baseName(id.replace(/\.md$/, ""))}`}
-              class="text-blue-600 underline"
-            >
-              {module.frontmatter.title}
+        {
+          entries.map((post) => {
+            <li>
+              <a link={`posts/${post.entryName}`}>
+              {post?.frontmatter.title}
             </a>
           </li>
-        ))}
+          })
+        }
       </ul>
     </div>
   );
