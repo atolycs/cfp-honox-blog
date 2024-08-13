@@ -33,5 +33,6 @@ export default createRoute((c) => {
         </ul>
       </div>
     </div>,
+    { title: import.meta.env.PROD ? "Posts" : "Posts - Development" }
   );
 });
