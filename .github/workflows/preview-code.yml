@@ -106,7 +106,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               context: "Cloudflare Pages",
-              description: "Launched Preview Site!"
+              description: "Launched Preview Site!",
               state: 'success',
               sha,
               target_url: '${{ steps.cloudflare_pages_deploy.outputs.url }}'
@@ -118,7 +118,7 @@ jobs:
             await github.rest.pulls.createReview({
               ...context.repo,
               pull_number,
-              event: 'COMMENT'
+              event: 'COMMENT',
               body: `
                 # Deploy result
                 | Name | Result |
