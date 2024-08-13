@@ -112,7 +112,7 @@ jobs:
               description: "Launched Preview Site!",
               state: 'success',
               sha,
-              target_url: '${{ steps.cloudflare_pages_deploy.outputs.url }}'
+              target_url: '${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}'
             });
 
             const pulls = await github.rest.pulls.list({
@@ -129,12 +129,12 @@ jobs:
                 ...context.repo,
                 pull_number: pulls.data[0].number,
                 event: 'COMMENT',
-                body: `
-                  # Deploy result
-                  | Name | Result |
-                  | ---- | ------ |
-                  | ** Preview URL ** | ${{ steps.cloudflare_pages_deploy.outputs.url }} |
-                  | ** Last commit ** | ${ sha } |
-                `
+                body: [
+                  '# Deploy result',
+                  '| Name | Result |',
+                  '| ---- | ------ |',
+                  '| ** Preview URL ** | ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }} |',
+                  '| ** Last commit ** |' + sha  + ' |',
+                ].join('\n')
               })
             }
