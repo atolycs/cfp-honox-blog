@@ -117,7 +117,7 @@ jobs:
 
             await github.rest.pulls.createReview({
               ...context.repo,
-              pull_number,
+              pull_number: pull_number,
               event: 'COMMENT',
               body: `
                 # Deploy result
