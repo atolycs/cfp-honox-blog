@@ -101,8 +101,6 @@ jobs:
         with:
           github-token: ${{ steps.gh_token.outputs.token }}
           script: |
-            const sha = context.payload.pull_request?.head.sha ?? context.sha;
-            const pull_number = context.payload.pull_request?.number;
 
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
@@ -111,8 +109,11 @@ jobs:
               description: "Launched Preview Site!"
               state: 'success',
               sha,
-              target_url: "${{ steps.cloudflare_pages_deploy.outputs.url }}"
+              target_url: '${{ steps.cloudflare_pages_deploy.outputs.url }}'
             });
+
+            const sha = context.payload.pull_request?.head.sha ?? context.sha;
+            const pull_number = context.payload.pull_request?.number;
 
             await github.rest.pulls.createReview({
               ...context.repo,
