@@ -33,7 +33,7 @@ jobs:
             
             try {
               const result = await github.rest.pulls.create({
-                title: '[CI] code update',
+                title: '[CI] code update ${{ github.ref_name }} ',
                 owner: owner,
                 repo: repo,
                 head: '${{ github.ref_name }}',
