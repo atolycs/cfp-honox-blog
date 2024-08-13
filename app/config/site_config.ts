@@ -7,7 +7,7 @@ export const SITE: SITEDefine = {
 };
 
 export const LOCALE = {
-    lang: "ja",
+  lang: "ja",
 } as const;
 
 export const SOCIALS: SocialsDefine = [
