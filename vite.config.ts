@@ -7,6 +7,8 @@ import mdx from "@mdx-js/rollup";
 import rehypeHighlight from "rehype-highlight";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
 
 import { defineConfig } from "vite";
 
@@ -37,7 +39,7 @@ export default defineConfig(({ mode }) => {
       pages(),
       mdx({
         jsxImportSource: "hono/jsx",
-        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm, remarkParse],
         rehypePlugins: [rehypeHighlight],
       }),
       ssg({ entry }),
