@@ -18,9 +18,9 @@ export default defineConfig(({ mode }) => {
       plugins: [client()],
       build: {
         rollupOptions: {
-          input: ["/app/style.css"],
+          input: ["./app/style.css"],
           output: {
-            assetFileNames: "static/assets/[name].[ext]",
+            assetFileNames: "static/css/[name].[ext]",
           },
         },
       },
