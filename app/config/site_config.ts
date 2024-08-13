@@ -1,8 +1,9 @@
-import { SITEDefine, SocialsDefine } from "../types";
+import { SITEDefine, SocialsDefine } from "../types/site_types";
 
 export const SITE: SITEDefine = {
   title: "Tech Memo",
   description: "しがないエンジニアのテックメモなどのチラ裏",
+  user_description: "どこかでエンジニアやってます",
   author: "Atolycs",
 };
 

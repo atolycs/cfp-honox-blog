@@ -3,6 +3,8 @@ import { createRoute } from "honox/factory";
 import { getPosts, getPostEntryName } from "../../lib/getPost";
 import { BackToTop } from "../../islands/backtoTop";
 
+import { AfterProfile } from "../../components/afterProfile";
+
 export default createRoute(
   ssgParams(() => {
     const posts = getPosts();
@@ -23,6 +25,7 @@ export default createRoute(
     return c.render(
       <>
         {post?.Component({})}
+        <AfterProfile />
         <BackToTop />
       </>,
       {

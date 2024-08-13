@@ -8,7 +8,7 @@ type Props = {
 
 export const Link: FC<Props> = ({ href, children, className }) => {
   return (
-    <a href={href}>
+    <a href={href} rel="noreferrer">
       <span className={className}>{children}</span>
     </a>
   );

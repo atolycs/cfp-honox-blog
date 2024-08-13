@@ -1,7 +1,9 @@
+import { Link } from "../components/Link";
+
 export const BackToTop = () => {
   return (
-    <a href="/" className="hover:underline">
-      Back To TOP
-    </a>
+    <Link href="/" className="hover:underline">
+      Back To Top
+    </Link>
   );
 };
