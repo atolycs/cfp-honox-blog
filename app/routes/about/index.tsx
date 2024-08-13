@@ -14,7 +14,7 @@ export default createRoute((c) => {
         {import.meta.env.PROD ? (
           <Avatar
             src="https://avatars.githubusercontent.com/u/111569596?v=4"
-            className="rounded-full w-20 h-20"
+            className="rounded-full w-48 h-48"
           />
         ) : (
           <Avatar src={image} className="rounded-full w-48 h-48" />

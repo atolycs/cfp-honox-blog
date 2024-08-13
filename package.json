@@ -8,7 +8,8 @@
     "deploy": "$npm_execpath run build && wrangler pages deploy",
     "lint": "biome lint .",
     "check": "biome check .",
-    "format": "biome format --fix ."
+    "format": "biome format --fix .",
+    "post:create": "node scripts/createPost.mjs"
   },
   "private": true,
   "dependencies": {
