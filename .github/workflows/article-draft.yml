@@ -107,23 +107,34 @@ jobs:
 
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
-              repo: context.repo.repo
+              repo: context.repo.repo,
               context: "Cloudflare Pages",
-              description: "Launched Preview Site!"
+              description: "Launched Preview Site!",
               state: 'success',
               sha,
-              target_url: "${{ steps.cloudflare_pages_deploy.outputs.url }}"
+              target_url: '${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}'
             });
 
-            await github.rest.pulls.createReview({
-              ...context.repo,
-              pull_number,
-              event: 'COMMENT'
-              body: `
-                # Deploy result
-                | Name | Result |
-                | ---- | ------ |
-                | ** Preview URL ** | ${{ steps.cloudflare_pages_deploy.outputs.url }} |
-                | ** Last commit ** | ${ sha } |
-              `
+            const pulls = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              head: '${{ github.ref_name }}',
+              base: 'main'
             })
+            
+            if (pulls.data.length == 1) {
+
+              await github.rest.pulls.createReview({
+                ...context.repo,
+                pull_number: pulls.data[0].number,
+                event: 'COMMENT',
+                body: [
+                  '# Deploy result',
+                  '| Name | Result |',
+                  '| ---- | ------ |',
+                  '| **Preview URL** | ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }} |',
+                  '| **Last commit** |' + sha  + ' |',
+                ].join('\n')
+              })
+            }
