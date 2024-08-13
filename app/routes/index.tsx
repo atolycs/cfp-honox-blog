@@ -23,6 +23,7 @@ export default createRoute((c) => {
                       title={post.frontmatter.title}
                       entryName={post.entryName}
                       date={post.frontmatter.date}
+                      draft={post.frontmatter.draft}
                     />
                   </Fragment>
                 </li>

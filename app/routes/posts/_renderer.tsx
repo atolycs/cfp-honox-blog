@@ -6,7 +6,11 @@ export default jsxRenderer(({ children, Layout, title, frontmatter }) => {
     <Layout title={title}>
       <div className="gird grid-cols-1 gap-28 py-4 md:py-8">
         <section className="grid grid-cols-1 justify-items-center gap-2 md:gap-4">
-          <h1 className="font-semibold text-xl md:text-3xl">{title}</h1>
+          <h1 className="font-semibold text-xl md:text-3xl">{
+          frontmatter?.draft
+            ? `${title} (Draft)`
+            : title
+          }</h1>
           <div className="flex items-center gap-4">
             <p className="text-sm text-zinc-700">
               {formattedDate(frontmatter?.date)}

@@ -4,6 +4,7 @@ export type Props = {
   title: string;
   entryName: string;
   date?: string;
+  draft?: boolean;
 };
 
 export const PostList = (props: Props) => {
@@ -17,6 +18,12 @@ export const PostList = (props: Props) => {
           >
             {props.title}
           </Link>
+          {
+            // @ts-ignore
+            props.draft ? (
+              <span className="text-xs text-gray-500">Draft</span>
+            ): null
+          }
           <time className="text-gray-500 text-sm max-md:text-xs mx-4">
             {
               // @ts-ignore
