@@ -1,6 +1,7 @@
 import { jsxRenderer } from "hono/jsx-renderer";
 
-export default jsxRenderer(({ children, Layout, title }) => {
+export default jsxRenderer(({ children, Layout, title, frontmatter }) => {
+  console.log(frontmatter);
   return (
     <Layout title={title}>
       <div className="gird grid-cols-1 gap-28 py-4 md:py-8">

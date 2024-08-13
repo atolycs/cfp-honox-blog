@@ -1,3 +1,7 @@
 export const BackToTop = () => {
-  return <a href="/">Back To TOP</a>;
+  return (
+    <a href="/" className="hover:underline">
+      Back To TOP
+    </a>
+  );
 };

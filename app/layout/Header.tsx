@@ -1,7 +1,7 @@
 import type { JSX } from "hono/jsx/jsx-runtime";
 import type { FC } from "hono/jsx";
 import { css } from "hono/css";
-import { Link } from "../islands/Link";
+import { Link } from "../components/Link";
 import { SITE } from "../config/site_config";
 
 type Props = {

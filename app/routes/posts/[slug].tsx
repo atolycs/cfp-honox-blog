@@ -27,6 +27,7 @@ export default createRoute(
       </>,
       {
         title: pageTitle,
+        frontmatter: post?.frontmatter,
       },
     );
   },
