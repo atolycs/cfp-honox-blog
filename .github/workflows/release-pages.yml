@@ -12,7 +12,7 @@ jobs:
   build_ssg:
     name: Build Web Page (Production)
     runs-on: ubuntu-latest
-
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     steps:
       - name: Setup environment
         uses: actions/setup-node@v4
