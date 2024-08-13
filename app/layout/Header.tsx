@@ -4,6 +4,8 @@ import { css } from "hono/css";
 import { Link } from "../components/Link";
 import { SITE } from "../config/site_config";
 
+import { headerLinks } from "../config/header_links";
+
 type Props = {
   children?: JSX.Element;
 };
@@ -15,13 +17,15 @@ export const Header = (props: Props) => {
         {SITE.title}
       </Link>
       <div className="flex justify-items-center gap-4">
-        <Link href="/about" className="text-lg font-semibold">
-          About
-        </Link>
-        <Link href="/posts" className="text-lg font-semibold">
-          Posts
-        </Link>
-      </div>
+        {
+          headerLinks.map((link) => (
+            <Link href={link.href} className="text-lg font-semibold">
+              {link.title}
+            </Link>
+          ))
+        }
+
+     </div>
     </header>
   );
 };
