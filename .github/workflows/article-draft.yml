@@ -54,6 +54,7 @@ jobs:
   build_ssg:
     name: Build Web Page (Preview)
     runs-on: ubuntu-latest
+    environment: blog-staging
 
     steps:
       - name: Setup environment
