@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev/**
+      
   workflow_dispatch:
 
 jobs:
@@ -62,10 +63,6 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PEM }}
 
-      - name: get npm cache directory
-        id: npm-cache-dir
-        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
-
       - name: checkout
         uses: actions/checkout@v4
 
@@ -73,7 +70,7 @@ jobs:
         uses: actions/cache@v4
         id: npm-cache
         with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -101,28 +98,39 @@ jobs:
         with:
           github-token: ${{ steps.gh_token.outputs.token }}
           script: |
+            
             const sha = context.payload.pull_request?.head.sha ?? context.sha;
-            const pull_number = context.payload.pull_request?.number;
 
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
-              repo: context.repo.repo
+              repo: context.repo.repo,
               context: "Cloudflare Pages",
-              description: "Launched Preview Site!"
+              description: "Launched Preview Site!",
               state: 'success',
               sha,
-              target_url: "${{ steps.cloudflare_pages_deploy.outputs.url }}"
+              target_url: '${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}'
             });
 
-            await github.rest.pulls.createReview({
-              ...context.repo,
-              pull_number,
-              event: 'COMMENT'
-              body: `
-                # Deploy result
-                | Name | Result |
-                | ---- | ------ |
-                | ** Preview URL ** | ${{ steps.cloudflare_pages_deploy.outputs.url }} |
-                | ** Last commit ** | ${ sha } |
-              `
+            const pulls = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              head: '${{ github.ref_name }}',
+              base: 'main'
             })
+            
+            if (pulls.data.length == 1) {
+
+              await github.rest.pulls.createReview({
+                ...context.repo,
+                pull_number: pulls.data[0].number,
+                event: 'COMMENT',
+                body: [
+                  '# Deploy result',
+                  '| Name | Result |',
+                  '| ---- | ------ |',
+                  '| **Preview URL** | ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }} |',
+                  '| **Last commit** |' + sha  + ' |',
+                ].join('\n')
+              })
+            }
