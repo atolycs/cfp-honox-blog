@@ -5,7 +5,7 @@ on:
     branches:
       - blog/*
     paths:
-      - "src/content/blog/**.md"
+      - "app/content/blog/**.md"
 
   workflow_dispatch:
 
