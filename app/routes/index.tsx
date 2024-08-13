@@ -21,6 +21,7 @@ export default createRoute((c) => {
                     <PostList
                       title={post.frontmatter.title}
                       entryName={post.entryName}
+                      date={post.frontmatter.date}
                     />
                   </Fragment>
                 </li>

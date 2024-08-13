@@ -21,10 +21,10 @@ export default createRoute(
     const pageTitle = post?.frontmatter.title;
 
     return c.render(
-      <article>
+      <>
         {post?.Component({})}
         <BackToTop />
-      </article>,
+      </>,
       {
         title: pageTitle,
       },
