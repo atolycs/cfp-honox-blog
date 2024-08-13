@@ -1,10 +1,10 @@
 import { createRoute } from "honox/factory";
 
 export default createRoute((c) => {
-    const robotsTxt = `
+  const robotsTxt = `
     User-agent: *
     Allow: /
-    `
+    `;
 
-    return c.text(robotsTxt, 200)
-})
+  return c.text(robotsTxt, 200);
+});

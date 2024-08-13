@@ -5,7 +5,6 @@ import { Fragment } from "hono/jsx/jsx-runtime";
 
 export default createRoute((c) => {
   const entries = getPosts();
-  console.log(entries);
   return c.render(
     <div class="border-b border-blue-200 mt-10">
       <h1 class="text-2xl font-semibold pb-1">Welcome to hono</h1>
@@ -31,6 +30,5 @@ export default createRoute((c) => {
         </ul>
       </div>
     </div>,
-    { title: "this is test!" },
   );
 });

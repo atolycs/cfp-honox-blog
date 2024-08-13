@@ -3,6 +3,7 @@ import { jsxRenderer } from "hono/jsx-renderer";
 import { Script } from "honox/server";
 import { SITE, LOCALE } from "../config/site_config";
 
+import { Header } from "../layout/Header";
 import { Footer } from "../layout/Footer";
 
 export default jsxRenderer(({ children, title }) => {
@@ -23,8 +24,11 @@ export default jsxRenderer(({ children, title }) => {
         )}
         <Style />
       </head>
-      <body>{children}</body>
-      <Footer />
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 });
