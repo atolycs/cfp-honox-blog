@@ -1,4 +1,4 @@
-name: Article Draft PR
+name: Code update PR
 
 on:
   push:
