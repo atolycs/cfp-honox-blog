@@ -9,9 +9,7 @@ export default createRoute((c) => {
   const entries = getPosts();
   return c.render(
     <div class="border-b border-blue-200 mt-10">
-      <h1 class="text-2xl font-semibold pb-1">Welcome to hono</h1>
       <div class="mt-5">
-        <p class="font-medium">Honox Blog</p>
         <p className="font-medium">{SITE.description}</p>
       </div>
       <div class="mt-16">
