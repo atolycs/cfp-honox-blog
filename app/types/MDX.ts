@@ -6,6 +6,7 @@ export type Frontmatter = {
   date: string;
   description?: string;
   published?: boolean;
+  author?: string;
 };
 
 export type MDX = {

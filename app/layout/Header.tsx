@@ -17,15 +17,12 @@ export const Header = (props: Props) => {
         {SITE.title}
       </Link>
       <div className="flex justify-items-center gap-4">
-        {
-          headerLinks.map((link) => (
-            <Link href={link.href} className="text-lg font-semibold">
-              {link.title}
-            </Link>
-          ))
-        }
-
-     </div>
+        {headerLinks.map((link) => (
+          <Link href={link.href} className="text-lg font-semibold">
+            {link.title}
+          </Link>
+        ))}
+      </div>
     </header>
   );
 };
