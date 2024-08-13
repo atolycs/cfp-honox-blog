@@ -1,6 +1,7 @@
 import { ssgParams } from "hono/ssg";
 import { createRoute } from "honox/factory";
 import { getPosts, getPostEntryName } from "../../lib/getPost";
+import { BackToTop } from "../../islands/backtoTop";
 
 export default createRoute(
   ssgParams(() => {
@@ -21,8 +22,14 @@ export default createRoute(
 
     const pageTitle = post?.frontmatter.title;
 
-    return c.render(<article>{post?.Component({})}</article>, {
-      title: pageTitle,
-    });
+    return c.render(
+      <article>
+        {post?.Component({})}
+        <BackToTop />
+      </article>,
+      {
+        title: pageTitle,
+      },
+    );
   },
 );

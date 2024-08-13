@@ -15,16 +15,18 @@ export default createRoute((c) => {
       <div class="mt-16">
         <ul class="mt-10">
           {entries.map((post) => {
-            return (
-              <li>
-                <Fragment key={post.entryName}>
-                  <PostList
-                    title={post.frontmatter.title}
-                    entryName={post.entryName}
-                  />
-                </Fragment>
-              </li>
-            );
+            if (post.frontmatter.published) {
+              return (
+                <li>
+                  <Fragment key={post.entryName}>
+                    <PostList
+                      title={post.frontmatter.title}
+                      entryName={post.entryName}
+                    />
+                  </Fragment>
+                </li>
+              );
+            }
           })}
         </ul>
       </div>
