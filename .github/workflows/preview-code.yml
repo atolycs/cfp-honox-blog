@@ -63,10 +63,6 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PEM }}
 
-      - name: get npm cache directory
-        id: npm-cache-dir
-        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
-
       - name: checkout
         uses: actions/checkout@v4
 
@@ -74,7 +70,7 @@ jobs:
         uses: actions/cache@v4
         id: npm-cache
         with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -133,8 +129,8 @@ jobs:
                   '# Deploy result',
                   '| Name | Result |',
                   '| ---- | ------ |',
-                  '| ** Preview URL ** | ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }} |',
-                  '| ** Last commit ** |' + sha  + ' |',
+                  '| **Preview URL** | ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }} |',
+                  '| **Last commit** |' + sha  + ' |',
                 ].join('\n')
               })
             }
