@@ -86,7 +86,7 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Build Astro Spaceship
+      - name: Build Honox SSG
         run: npm run build
 
       - name: Deploy Pages Preview

@@ -85,7 +85,7 @@ jobs:
       - name: format
         run: npm run format
 
-      - name: Build Astro Spaceship
+      - name: Build HonoX SSG
         run: npm run build
 
       - name: Deploy Pages Preview
