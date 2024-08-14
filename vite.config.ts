@@ -22,7 +22,11 @@ export default defineConfig(({ mode }) => {
       plugins: [client()],
       build: {
         rollupOptions: {
-          input: ["./app/style.css", "./app/styles/markdown.css"],
+          input: [
+            "./app/style.css",
+            "./app/styles/markdown.css",
+            "./app/styles/alert.css"
+          ],
           output: {
             assetFileNames: "static/css/[name].[ext]",
           },
