@@ -25,8 +25,7 @@ const result = await prompts(
   },
 );
 
-
-const entryPostFolder = resolve(__dirname, "app","content", "blog");
+const entryPostFolder = resolve(__dirname, "app", "content", "blog");
 const entryTitle = result.entryTitle.toString();
 const entryPath = result.entryPath.toString();
 
@@ -46,7 +45,7 @@ published: false
 `;
 
 promises.writeFile(
-    join(entryPostFolder, `${entryPath}.md`),
-    frontMatter,
-    "utf-8",
+  join(entryPostFolder, `${entryPath}.md`),
+  frontMatter,
+  "utf-8",
 );
