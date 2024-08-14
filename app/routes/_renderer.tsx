@@ -6,6 +6,8 @@ import { SITE, LOCALE } from "../config/site_config";
 import { Header } from "../layout/Header";
 import { Footer } from "../layout/Footer";
 
+import githubAlert from "remark-github-blockquote-alert/alert.css?url";
+
 export default jsxRenderer(({ children, title }) => {
   title = title ? `${title} - ${SITE.title}` : SITE.title;
 
@@ -17,18 +19,17 @@ export default jsxRenderer(({ children, title }) => {
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
         <Script src="/app/client.ts" async />
+        <link rel="stylesheet" href={githubAlert} />
         {import.meta.env.PROD ? (
           <link rel="stylesheet" href="/static/css/style.css" />
         ) : (
           <link rel="stylesheet" href="/app/style.css" />
         )}
-        {
-          import.meta.env.PROD ? (
-            <link rel="stylesheet" href="/static/css/markdown.css" />
-          ) : (
-            <link rel="stylesheet" href="/app/styles/markdown.css" />
-          )
-        }
+        {import.meta.env.PROD ? (
+          <link rel="stylesheet" href="/static/css/markdown.css" />
+        ) : (
+          <link rel="stylesheet" href="/app/styles/markdown.css" />
+        )}
         <Style />
       </head>
       <body className="flex flex-col items-center mb-2 mx-2">

@@ -16,7 +16,8 @@
   "dependencies": {
     "@mdx-js/rollup": "^3.0.1",
     "hono": "^4.5.4",
-    "honox": "^0.1.23"
+    "honox": "^0.1.23",
+    "remark-github-blockquote-alert": "^1.2.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
@@ -44,8 +45,6 @@
     }
   },
   "lint-staged": {
-    "app/**/*.{tsx,ts,js}": [
-      "biome format --write"
-    ]
+    "app/**/*.{tsx,ts,js}": ["biome format --write"]
   }
 }

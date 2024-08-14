@@ -9,6 +9,7 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
+import { remarkAlert } from "remark-github-blockquote-alert";
 
 import { defineConfig } from "vite";
 
@@ -43,6 +44,7 @@ export default defineConfig(({ mode }) => {
           remarkFrontmatter,
           remarkMdxFrontmatter,
           remarkGfm,
+          remarkAlert,
           remarkParse,
         ],
         rehypePlugins: [rehypeHighlight],
