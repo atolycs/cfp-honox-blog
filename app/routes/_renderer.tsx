@@ -22,6 +22,13 @@ export default jsxRenderer(({ children, title }) => {
         ) : (
           <link rel="stylesheet" href="/app/style.css" />
         )}
+        {
+          import.meta.env.PROD ? (
+            <link rel="stylesheet" href="/static/css/markdown.css" />
+          ) : (
+            <link rel="stylesheet" href="/app/styles/markdown.css" />
+          )
+        }
         <Style />
       </head>
       <body className="flex flex-col items-center mb-2 mx-2">

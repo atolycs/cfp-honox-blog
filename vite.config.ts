@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
       plugins: [client()],
       build: {
         rollupOptions: {
-          input: ["./app/style.css"],
+          input: ["./app/style.css", "./app/styles/*.css"],
           output: {
             assetFileNames: "static/css/[name].[ext]",
           },
@@ -39,7 +39,12 @@ export default defineConfig(({ mode }) => {
       pages(),
       mdx({
         jsxImportSource: "hono/jsx",
-        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm, remarkParse],
+        remarkPlugins: [
+          remarkFrontmatter,
+          remarkMdxFrontmatter,
+          remarkGfm,
+          remarkParse,
+        ],
         rehypePlugins: [rehypeHighlight],
       }),
       ssg({ entry }),
