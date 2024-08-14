@@ -1,0 +1,70 @@
+name: Manual Deploy Cloudflare Pages
+
+on:
+ workflow_dispatch:
+
+jobs:
+  build_ssg:
+    name: Build Web Page (Production)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup environment
+        uses: actions/setup-node@v4
+
+      - name: Create Github Apps Token
+        uses: atolycs/create-app-auth@v1
+        id: gh_token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PEM }}
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: cache check
+        uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: setup
+        run: npm ci
+
+      - name: Check node modules
+        run: npm ls
+
+      - name: format
+        run: npm run format
+
+      - name: Build HonoX SSG
+        run: npm run build
+
+      - name: Deploy Pages Preview
+        uses: cloudflare/wrangler-action@v3
+        id: cloudflare_pages_deploy
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: pages deploy ./dist --project-name=${{ vars.project_name }}
+
+      - name: Commit status
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.gh_token.outputs.token }}
+          script: |
+            
+            const sha = context.payload.pull_request?.head.sha ?? context.sha;
+
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              context: "Cloudflare Pages",
+              description: "Launched Preview Site!",
+              state: 'success',
+              sha,
+              target_url: '${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}'
+            });
+
