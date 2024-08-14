@@ -54,6 +54,9 @@ jobs:
   build_ssg:
     name: Build Web Page (Preview)
     runs-on: ubuntu-latest
+    environment:
+      name: blog-staging
+      url: ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}
 
     steps:
       - name: Setup environment

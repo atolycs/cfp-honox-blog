@@ -11,7 +11,6 @@ jobs:
   create_pr:
     name: Create PR
     runs-on: ubuntu-latest
-
     steps:
       - name: Create Github Apps Token
         uses: atolycs/create-app-auth@v1
@@ -51,6 +50,9 @@ jobs:
   build_ssg:
     name: Build Web Page (Preview)
     runs-on: ubuntu-latest
+    environment:
+      name: dev
+      url: ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}
 
     steps:
       - name: Setup environment
