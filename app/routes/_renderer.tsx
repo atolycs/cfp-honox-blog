@@ -36,6 +36,7 @@ export default jsxRenderer(({ children, title }) => {
         <Header />
         <main className="max-w-[780px] w-screen px-6 mt-6">
           <article>{children}</article>
+          {console.log(import.meta.env.MODE)}
         </main>
         <Footer />
       </body>
