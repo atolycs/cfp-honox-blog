@@ -5,6 +5,7 @@ import client from "honox/vite/client";
 import ssg from "@hono/vite-ssg";
 import mdx from "@mdx-js/rollup";
 import rehypeHighlight from "rehype-highlight";
+import rehypePrettyCode from "rehype-pretty-code";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import remarkParse from "remark-parse";
@@ -21,7 +22,11 @@ export default defineConfig(({ mode }) => {
       plugins: [client()],
       build: {
         rollupOptions: {
-          input: ["./app/style.css", "./app/styles/markdown.css"],
+          input: [
+            "./app/style.css",
+            "./app/styles/markdown.css",
+            "./app/styles/alert.css"
+          ],
           output: {
             assetFileNames: "static/css/[name].[ext]",
           },
@@ -47,7 +52,10 @@ export default defineConfig(({ mode }) => {
           remarkAlert,
           remarkParse,
         ],
-        rehypePlugins: [rehypeHighlight],
+        rehypePlugins: [
+          rehypeHighlight,
+          rehypePrettyCode
+        ],
       }),
       ssg({ entry }),
     ],
