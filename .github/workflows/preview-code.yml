@@ -146,6 +146,7 @@ jobs:
                   '| ---- | ------ |',
                   '| **Preview URL** | ${{ steps.cloudflare_pages_deploy.outputs.url }} |',
                   '| **Last commit** |' + sha  + ' |',
+                  '| **Build Log**   | [Show Log](https://dash.cloudflare.com/${{ secrets.CF_ACCOUNT_ID }}/pages/view/${{ vars.project_name }}/${{ steps.cloudflare_pages_deploy.outputs.id }}) |',
                 ].join('\n')
               })
             }
