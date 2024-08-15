@@ -6,7 +6,7 @@ const allPosts = import.meta.glob<MDX>("../content/blog/*.md", {
 });
 
 const posts = Object.entries(allPosts).filter(
-    ([_, module]) =>  module.frontmatter?.published || (!import.meta.env.PROD) && module.frontmatter?.draft 
+    ([_, module]) =>  module.frontmatter?.published || (import.meta.url) && module.frontmatter?.draft 
   ).map(([path, post]) => {
     const entryName = baseName(path);
     const { frontmatter } = post;
@@ -25,6 +25,7 @@ export const getPosts = () => {
   console.log(import.meta.env.BASE_URL)
   console.log(import.meta.url)
   console.log(import.meta.env.PROD)
+  console.log(import.meta.env.MODE)
   return posts
 }
 
