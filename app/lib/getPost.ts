@@ -22,6 +22,8 @@ export const getPosts = () => {
   if (!import.meta.env.PROD) {  
     console.log(posts)
   }
+  console.log(import.meta.env.BASE_URL)
+  console.log(import.meta.url)
   return posts
 }
 
@@ -42,7 +44,6 @@ export const getPosts = () => {
 }; */
 
 export const getPostEntryName = (entryName: string) => {
-  console.log(import.meta.url)
   const posts = getPosts();
   const post = posts.find((post) => post.entryName === entryName);
   return post;
