@@ -15,19 +15,18 @@ export default createRoute((c) => {
       <div class="mt-16">
         <ul class="mt-10">
           {entries.map((post) => {
-            if (post.frontmatter.published) {
               return (
+                // biome-ignore lint/correctness/useJsxKeyInIterable: <explanation>
                 <li>
                   <Fragment key={post.entryName}>
                     <PostList
                       title={post.frontmatter.title}
                       entryName={post.entryName}
-                      date={post.frontmatter.date}
+                      frontmatter={post.frontmatter} 
                     />
                   </Fragment>
                 </li>
               );
-            }
           })}
         </ul>
       </div>

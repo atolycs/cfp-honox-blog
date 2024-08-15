@@ -6,7 +6,14 @@ export type Frontmatter = {
   date: string;
   description?: string;
   published?: boolean;
+  draft?: boolean;
   author?: string;
+};
+
+export type PostData = {
+  entryName: string;
+  frontmatter: Frontmatter;
+  Component: (props: MDXProps) => JSX.Element;
 };
 
 export type MDX = {
