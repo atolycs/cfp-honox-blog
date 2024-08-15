@@ -9,7 +9,8 @@
     "lint": "biome lint .",
     "check": "biome check .",
     "format": "biome format --fix .",
-    "post:create": "node scripts/createPost.mjs"
+    "post:create": "node scripts/createPost.mjs",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@hono/vite-ssg": "^0.1.0",
     "@tailwindcss/typography": "^0.5.14",
     "autoprefixer": "^10.4.20",
+    "husky": "^9.1.4",
     "postcss": "^8.4.41",
     "rehype-pretty-code": "^0.13.2",
     "remark-frontmatter": "^5.0.0",
