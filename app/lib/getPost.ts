@@ -6,7 +6,7 @@ const allPosts = import.meta.glob<MDX>("../content/blog/*.md", {
 });
 
 const posts = Object.entries(allPosts).filter(
-    ([_, module]) =>  module.frontmatter?.published || module.frontmatter?.draft 
+    ([_, module]) =>  module.frontmatter?.published || (!import.meta.env.PROD) && module.frontmatter?.draft 
   ).map(([path, post]) => {
     const entryName = baseName(path);
     const { frontmatter } = post;
