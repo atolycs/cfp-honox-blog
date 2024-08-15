@@ -50,9 +50,9 @@ jobs:
   build_ssg:
     name: Build Web Page (Preview)
     runs-on: ubuntu-latest
-    environment:
-      name: dev
-      url: ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}
+    # environment:
+    #   name: dev
+    #   url: ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}
 
     steps:
       - name: Setup environment
@@ -89,13 +89,21 @@ jobs:
       - name: Build HonoX SSG
         run: npm run build
 
+      # - name: Deploy Pages Preview
+      #   uses: cloudflare/wrangler-action@v3
+      #   id: cloudflare_pages_deploy
+      #   with:
+      #     apiToken: ${{ secrets.CF_API_TOKEN }}
+      #     accountId: ${{ secrets.CF_ACCOUNT_ID }}
+      #     command: pages deploy ./dist --project-name=${{ vars.project_name }}
+
       - name: Deploy Pages Preview
-        uses: cloudflare/wrangler-action@v3
-        id: cloudflare_pages_deploy
+        uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=${{ vars.project_name }}
+          projectName: ${{ vars.project_name }}
+          githubToken: ${{ steps.gh_token.outputs.token }}
 
       - name: Commit status
         uses: actions/github-script@v7
