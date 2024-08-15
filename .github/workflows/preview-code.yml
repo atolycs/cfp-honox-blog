@@ -99,12 +99,14 @@ jobs:
 
       - name: Deploy Pages Preview
         uses: cloudflare/pages-action@v1
+        id: cloudflare_pages_deploy
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           projectName: ${{ vars.project_name }}
           githubToken: ${{ steps.gh_token.outputs.token }}
           directory: ./dist
+          wranglerVersion: '3'
 
       - name: Commit status
         uses: actions/github-script@v7
