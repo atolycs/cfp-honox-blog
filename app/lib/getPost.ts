@@ -42,6 +42,7 @@ export const getPosts = () => {
 }; */
 
 export const getPostEntryName = (entryName: string) => {
+  console.log(import.meta.url)
   const posts = getPosts();
   const post = posts.find((post) => post.entryName === entryName);
   return post;
