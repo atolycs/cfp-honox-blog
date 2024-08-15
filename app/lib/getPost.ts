@@ -24,6 +24,7 @@ export const getPosts = () => {
   }
   console.log(import.meta.env.BASE_URL)
   console.log(import.meta.url)
+  console.log(import.meta.env.PROD)
   return posts
 }
 
