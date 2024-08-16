@@ -16,7 +16,7 @@ export default createRoute(
       return c.notFound();
     }
 
-    const post = getPostEntryName(slug);
+    const post = getPostEntryName(c, slug);
 
     const pageTitle = post?.frontmatter.title;
 
