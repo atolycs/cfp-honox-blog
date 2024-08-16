@@ -4,7 +4,6 @@ import honox from "honox/vite";
 import client from "honox/vite/client";
 import ssg from "@hono/vite-ssg";
 import mdx from "@mdx-js/rollup";
-import rehypeHighlight from "rehype-highlight";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
@@ -25,7 +24,7 @@ export default defineConfig(({ mode }) => {
           input: [
             "./app/style.css",
             "./app/styles/markdown.css",
-            "./app/styles/alert.css"
+            "./app/styles/alert.css",
           ],
           output: {
             assetFileNames: "static/css/[name].[ext]",
@@ -52,10 +51,7 @@ export default defineConfig(({ mode }) => {
           remarkAlert,
           remarkParse,
         ],
-        rehypePlugins: [
-          rehypeHighlight,
-          rehypePrettyCode
-        ],
+        rehypePlugins: [rehypePrettyCode],
       }),
       ssg({ entry }),
     ],

@@ -10,8 +10,8 @@
     "check": "biome check .",
     "format": "biome format --fix .",
     "post:create": "node scripts/createPost.mjs",
-    "prepare": "husky install",
     "lint-staged": "lint-staged"
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +30,6 @@
     "husky": "^9.1.4",
     "lint-staged": "^15.2.9",
     "postcss": "^8.4.41",
-    "rehype-highlight": "^7.0.0",
     "rehype-pretty-code": "^0.13.2",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.0",

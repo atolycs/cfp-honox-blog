@@ -23,8 +23,7 @@ export default jsxRenderer(({ children, title }) => {
           <link rel="stylesheet" href="/static/css/alert.css" />
         ) : (
           <link rel="stylesheet" href={githubAlert} />
-        )
-        }
+        )}
         {import.meta.env.PROD ? (
           <link rel="stylesheet" href="/static/css/style.css" />
         ) : (
