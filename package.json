@@ -10,7 +10,7 @@
     "check": "biome check .",
     "format": "biome format --fix .",
     "post:create": "node scripts/createPost.mjs",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
     "prepare": "husky"
   },
   "private": true,
