@@ -10,6 +10,7 @@
     "check": "biome check .",
     "format": "biome format --fix .",
     "post:create": "node scripts/createPost.mjs",
+    "lint-staged": "lint-staged",
     "prepare": "husky"
   },
   "private": true,
@@ -27,6 +28,7 @@
     "@tailwindcss/typography": "^0.5.14",
     "autoprefixer": "^10.4.20",
     "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
     "postcss": "^8.4.41",
     "rehype-pretty-code": "^0.13.2",
     "remark-frontmatter": "^5.0.0",

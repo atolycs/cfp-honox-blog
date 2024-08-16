@@ -1,9 +1,10 @@
+import type { Frontmatter } from "../types/MDX";
 import { Link } from "./Link";
 
 export type Props = {
   title: string;
   entryName: string;
-  date?: string;
+  frontmatter?: Frontmatter;
 };
 
 export const PostList = (props: Props) => {
@@ -20,13 +21,18 @@ export const PostList = (props: Props) => {
           <time className="text-gray-500 text-sm max-md:text-xs mx-4">
             {
               // @ts-ignore
-              new Date(props.date).toLocaleDateString("en-US", {
+              new Date(props.frontmatter?.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",
               })
             }
           </time>
+          {
+            props.frontmatter?.draft && (
+              <span className="text-xs text-gray-500">Draft</span>
+            )
+          }
         </div>
       </div>
     </>
