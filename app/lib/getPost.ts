@@ -24,13 +24,7 @@ const posts = Object.entries(allPosts)
   });
 
 const postMap = (c: Context) => {
-  console.log(c.req.header("host"));
-  if (
-    import.meta.env.PROD &&
-    (c.req.header("host")?.includes("localhost") ||
-      c.req.header("host")?.match(/[^?]+.cfp-honox-blog.pages.dev/))
-  ) {
-    console.log("Production Preview mode");
+  if (!import.meta.env.PROD) {
     const posts = Object.entries(allPosts)
       .filter(
         ([_, module]) =>
@@ -47,21 +41,7 @@ const postMap = (c: Context) => {
         };
       });
     return posts;
-  } else if (import.meta.env.DEV) {
-    console.log("Development mode");
-    const posts = Object.entries(allPosts).map(([path, post]) => {
-      const entryName = baseName(path);
-      const { frontmatter } = post;
-      const { default: Component } = post;
-      return {
-        entryName,
-        frontmatter,
-        Component,
-      };
-    });
-    return posts;
   } else {
-    console.log("Production mode");
     const posts = Object.entries(allPosts)
       .filter(
         ([_, module]) =>
@@ -79,7 +59,6 @@ const postMap = (c: Context) => {
       });
     return posts;
   }
-  //return posts
 };
 
 export const getPosts = (c: Context) => {

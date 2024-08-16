@@ -1,6 +1,7 @@
 import { ssgParams } from "hono/ssg";
 import { createRoute } from "honox/factory";
 import { getPosts, getPostEntryName } from "../../lib/getPost";
+import { Fragment } from "hono/jsx/jsx-runtime";
 
 export default createRoute(
   ssgParams((c) => {
@@ -19,7 +20,7 @@ export default createRoute(
 
     const pageTitle = post?.frontmatter.title;
 
-    return c.render(<>{post?.Component({})}</>, {
+    return c.render(<Fragment>{post?.Component({})}</Fragment>, {
       title: pageTitle,
       frontmatter: post?.frontmatter,
     });
