@@ -3,8 +3,8 @@ import { createRoute } from "honox/factory";
 import { getPosts, getPostEntryName } from "../../lib/getPost";
 
 export default createRoute(
-  ssgParams(() => {
-    const posts = getPosts();
+  ssgParams((c) => {
+    const posts = getPosts(c);
     return posts.map((post) => ({
       slug: post.entryName,
     }));
