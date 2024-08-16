@@ -23,11 +23,10 @@ const posts = Object.entries(allPosts)
     };
   });
 
-const postMap = (c: Context) => {
+const postMap = (c: string | undefined) => {
   if (
     import.meta.env.PROD &&
-    (c.req.header("host")?.includes("localhost") ||
-      c.req.header("host")?.match(/[^?]+.cfp-honox-blog.pages.dev/))
+    (c.includes("localhost") || c.match(/[^?]+.cfp-honox-blog.pages.dev/))
   ) {
     const posts = Object.entries(allPosts)
       .filter(
@@ -80,7 +79,7 @@ const postMap = (c: Context) => {
 };
 
 export const getPosts = (c: Context) => {
-  const posts = postMap(c);
+  const posts = postMap(c.req.header("host"));
   if (!import.meta.env.PROD) {
     console.log(posts);
   }
