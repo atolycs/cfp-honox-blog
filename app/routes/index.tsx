@@ -6,7 +6,7 @@ import { Fragment } from "hono/jsx/jsx-runtime";
 import { SITE } from "../config/site_config";
 
 export default createRoute((c) => {
-  const entries = getPosts();
+  const entries = getPosts(c);
   return c.render(
     <div class="border-b border-blue-200 mt-10">
       <div class="mt-5">
@@ -15,18 +15,18 @@ export default createRoute((c) => {
       <div class="mt-16">
         <ul class="mt-10">
           {entries.map((post) => {
-              return (
-                // biome-ignore lint/correctness/useJsxKeyInIterable: <explanation>
-                <li>
-                  <Fragment key={post.entryName}>
-                    <PostList
-                      title={post.frontmatter.title}
-                      entryName={post.entryName}
-                      frontmatter={post.frontmatter} 
-                    />
-                  </Fragment>
-                </li>
-              );
+            return (
+              // biome-ignore lint/correctness/useJsxKeyInIterable: <explanation>
+              <li>
+                <Fragment key={post.entryName}>
+                  <PostList
+                    title={post.frontmatter.title}
+                    entryName={post.entryName}
+                    frontmatter={post.frontmatter}
+                  />
+                </Fragment>
+              </li>
+            );
           })}
         </ul>
       </div>

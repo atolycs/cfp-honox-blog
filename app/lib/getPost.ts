@@ -1,3 +1,4 @@
+import type { Context } from "hono";
 import type { MDX, PostData } from "../types/MDX";
 import { baseName } from "./path-utils";
 
@@ -22,12 +23,67 @@ const posts = Object.entries(allPosts)
     };
   });
 
-const postMap = (c: Context<Env, any, {}>, allPosts?: any) => {
-  console.log(c.req.url);
+const postMap = (c: Context) => {
+  console.log(c.req.header("host"));
+  if (
+    import.meta.env.PROD &&
+    (c.req.header("host")?.includes("localhost") ||
+      c.req.header("host")?.match(/[^?]+.cfp-honox-blog.pages.dev/))
+  ) {
+    console.log("Production Preview mode");
+    const posts = Object.entries(allPosts)
+      .filter(
+        ([_, module]) =>
+          module.frontmatter?.published || module.frontmatter?.draft,
+      )
+      .map(([path, post]) => {
+        const entryName = baseName(path);
+        const { frontmatter } = post;
+        const { default: Component } = post;
+        return {
+          entryName,
+          frontmatter,
+          Component,
+        };
+      });
+    return posts;
+  } else if (import.meta.env.DEV) {
+    console.log("Development mode");
+    const posts = Object.entries(allPosts).map(([path, post]) => {
+      const entryName = baseName(path);
+      const { frontmatter } = post;
+      const { default: Component } = post;
+      return {
+        entryName,
+        frontmatter,
+        Component,
+      };
+    });
+    return posts;
+  } else {
+    console.log("Production mode");
+    const posts = Object.entries(allPosts)
+      .filter(
+        ([_, module]) =>
+          module.frontmatter?.published && !module.frontmatter?.draft,
+      )
+      .map(([path, post]) => {
+        const entryName = baseName(path);
+        const { frontmatter } = post;
+        const { default: Component } = post;
+        return {
+          entryName,
+          frontmatter,
+          Component,
+        };
+      });
+    return posts;
+  }
+  //return posts
 };
 
-export const getPosts = (c: Context<Env, any, {}>) => {
-  postMap(c);
+export const getPosts = (c: Context) => {
+  const posts = postMap(c);
   if (!import.meta.env.PROD) {
     console.log(posts);
   }
