@@ -24,7 +24,11 @@ const posts = Object.entries(allPosts)
   });
 
 const postMap = (c: Context) => {
-  if (!import.meta.env.PROD) {
+  if (
+    import.meta.env.PROD &&
+    (c.req.header("host")?.includes("localhost") ||
+      c.req.header("host")?.match(/[^?]+.cfp-honox-blog.pages.dev/))
+  ) {
     const posts = Object.entries(allPosts)
       .filter(
         ([_, module]) =>
@@ -42,6 +46,21 @@ const postMap = (c: Context) => {
       });
     return posts;
   }
+
+  if (!import.meta.env.PROD) {
+    const posts = Object.entries(allPosts).map(([path, post]) => {
+      const entryName = baseName(path);
+      const { frontmatter } = post;
+      const { default: Component } = post;
+      return {
+        entryName,
+        frontmatter,
+        Component,
+      };
+    });
+    return posts;
+  }
+
   const posts = Object.entries(allPosts)
     .filter(
       ([_, module]) =>
