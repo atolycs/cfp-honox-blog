@@ -7,9 +7,6 @@ jobs:
   build_ssg:
     name: Build Web Page (Production)
     runs-on: ubuntu-latest
-    environment:
-      name: Production
-      url: ${{ steps.cloudflare_pages_deploy.outputs.deployment-url }}
 
     steps:
       - name: Setup environment
