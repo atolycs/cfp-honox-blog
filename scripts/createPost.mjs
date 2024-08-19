@@ -40,6 +40,7 @@ const frontMatter = `---
 title: ${entryTitle}
 date: ${date.toISOString()}
 slug: ${entryPath.split("/").pop()}
+draft: true
 published: false
 ---
 `;

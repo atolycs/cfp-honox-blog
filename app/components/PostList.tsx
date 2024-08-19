@@ -28,11 +28,9 @@ export const PostList = (props: Props) => {
               })
             }
           </time>
-          {
-            props.frontmatter?.draft && (
-              <span className="text-xs text-gray-500">Draft</span>
-            )
-          }
+          {props.frontmatter?.draft && (
+            <span className="text-xs text-gray-500">Draft</span>
+          )}
         </div>
       </div>
     </>
