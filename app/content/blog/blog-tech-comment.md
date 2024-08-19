@@ -2,8 +2,8 @@
 title: ブログの設定が大体終わったので解説作ってみた
 date: 2024-08-19T00:44:33.579Z
 slug: blog-tech-comment
-draft: true
-published: false
+draft: false
+published: true
 ---
 
 大方、ブログの構築作業が終わったので、解説してみる。
