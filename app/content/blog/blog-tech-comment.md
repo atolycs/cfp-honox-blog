@@ -49,7 +49,8 @@ yusukebeさんが公開しているサンプルや、HonoXでブログを構築�
 const postMap = (c: string | undefined) => {
   if (
     import.meta.env.PROD &&
-    (c?.includes("localhost") || c?.match(/[^?]+.<Cloudflare Pages上でのプロジェクト名>.pages.dev/))
+    (c?.includes("localhost") || 
+     c?.match(/[^?]+.<Cloudflare Pages上でのプロジェクト名>.pages.dev/))
   ) {
     const posts = Object.entries(allPosts)
       .filter(
