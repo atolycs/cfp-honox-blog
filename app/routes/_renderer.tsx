@@ -20,19 +20,9 @@ export default jsxRenderer(({ children, title }) => {
         <link rel="icon" href="/favicon.ico" />
         <Script src="/app/client.ts" async />
         {import.meta.env.PROD ? (
-          <link rel="stylesheet" href="/static/css/alert.css" />
-        ) : (
-          <link rel="stylesheet" href={githubAlert} />
-        )}
-        {import.meta.env.PROD ? (
           <link rel="stylesheet" href="/static/css/style.css" />
         ) : (
           <link rel="stylesheet" href="/app/style.css" />
-        )}
-        {import.meta.env.PROD ? (
-          <link rel="stylesheet" href="/static/css/markdown.css" />
-        ) : (
-          <link rel="stylesheet" href="/app/styles/markdown.css" />
         )}
         <Style />
       </head>
