@@ -1,4 +1,4 @@
-import { SITEDefine, SocialsDefine } from "../types/site_types";
+import type { SITEDefine, SocialsDefine } from "../types/site_types";
 
 export const SITE: SITEDefine = {
   title: "Tech Memo",

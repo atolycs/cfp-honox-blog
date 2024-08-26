@@ -26,7 +26,7 @@ const posts = Object.entries(allPosts)
 const postMap = (c: string | undefined) => {
   if (
     import.meta.env.PROD &&
-    (c.includes("localhost") || c.match(/[^?]+.cfp-honox-blog.pages.dev/))
+    (c?.includes("localhost") || c?.match(/[^?]+.cfp-honox-blog.pages.dev/))
   ) {
     const posts = Object.entries(allPosts)
       .filter(

@@ -4,12 +4,16 @@ type Props = {
   href: string;
   children?: string;
   className?: string;
+  key?: string | number;
+  description?: string;
 };
 
-export const Link: FC<Props> = ({ href, children, className }) => {
+export const Link: FC<Props> = ({ href, className, description, children }) => {
   return (
     <a href={href} rel="noreferrer">
-      <span className={className}>{children}</span>
+      <span className={className} title={description}>
+        {children}
+      </span>
     </a>
   );
 };
