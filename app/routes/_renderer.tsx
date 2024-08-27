@@ -6,8 +6,6 @@ import { SITE, LOCALE } from "../config/site_config";
 import { Header } from "../layout/Header";
 import { Footer } from "../layout/Footer";
 
-import githubAlert from "remark-github-blockquote-alert/alert.css?url";
-
 export default jsxRenderer(({ children, title }) => {
   title = title ? `${title} - ${SITE.title}` : SITE.title;
 
