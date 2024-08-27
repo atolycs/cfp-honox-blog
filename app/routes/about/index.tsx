@@ -26,7 +26,12 @@ export default createRoute((c) => {
         <div className="flex flex-col gap-3">
           <p>Socials:</p>
           {SOCIALS.map((social) => (
-            <Link href={social.href} className="hover:underline">
+            <Link
+              key={social.name}
+              href={social.href}
+              className="hover:underline"
+              description={social.linkdescription}
+            >
               {social.name}
             </Link>
           ))}

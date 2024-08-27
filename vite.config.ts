@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => {
             "./app/style.css",
             "./app/styles/markdown.css",
             "./app/styles/alert.css",
+            "./app/styles/rehype.css",
           ],
           output: {
             assetFileNames: "static/css/[name].[ext]",

@@ -6,7 +6,7 @@ const allPosts = import.meta.glob<MDX>("../content/blog/*.md", {
   eager: true,
 });
 
-const posts = Object.entries(allPosts)
+const posts: PostData[] = Object.entries(allPosts)
   .filter(
     ([_, module]) =>
       module.frontmatter?.published ||
@@ -26,7 +26,7 @@ const posts = Object.entries(allPosts)
 const postMap = (c: string | undefined) => {
   if (
     import.meta.env.PROD &&
-    (c.includes("localhost") || c.match(/[^?]+.cfp-honox-blog.pages.dev/))
+    (c?.includes("localhost") || c?.match(/[^?]+.cfp-honox-blog.pages.dev/))
   ) {
     const posts = Object.entries(allPosts)
       .filter(
@@ -89,22 +89,6 @@ export const getPosts = (c: Context) => {
   console.log(import.meta.env.MODE);
   return posts;
 };
-
-/* export const getPosts = ():PostData[] => {
-  console.log(posts)
-  const postData = Object.entries(posts).map(([path, post]) => {
-    const entryName = baseName(path);
-    const { frontmatter } = post;
-    const { default: Component } = post;
-    return {
-      entryName,
-      frontmatter,
-      Component,
-    };
-  });
-
-  return postData;
-}; */
 
 export const getPostEntryName = (c: Context, entryName: string) => {
   const posts = getPosts(c);
