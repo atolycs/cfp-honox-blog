@@ -6,6 +6,10 @@ on:
       - dev/**
       
   workflow_dispatch:
+  
+concurrency:
+  group: code-dev
+  cancel-in-progress: true
 
 jobs:
   create_pr:
