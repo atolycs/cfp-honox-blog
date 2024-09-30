@@ -27,7 +27,7 @@
     "@hono/vite-ssg": "^0.1.0",
     "@tailwindcss/typography": "^0.5.15",
     "autoprefixer": "^10.4.20",
-    "husky": "^9.1.5",
+    "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.41",
     "prompts": "^2.4.2",
