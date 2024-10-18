@@ -8,3 +8,5 @@ secureHeaders({
       }
     : undefined,
 });
+
+export default createRoute(secureHeaders());
