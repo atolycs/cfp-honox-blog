@@ -6,7 +6,7 @@ import { SITE, LOCALE } from "../config/site_config";
 import { Header } from "../layout/Header";
 import { Footer } from "../layout/Footer";
 
-export default jsxRenderer(({ children, title }) => {
+export default jsxRenderer(({ children, title }, c) => {
   title = title ? `${title} - ${SITE.title}` : SITE.title;
 
   return (
@@ -16,7 +16,11 @@ export default jsxRenderer(({ children, title }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
-        <Script src="/app/client.ts" async />
+        <Script
+          src="/app/client.ts"
+          async
+          nonce={c.get("secureHeadersNonce")}
+        />
         {import.meta.env.PROD ? (
           <link rel="stylesheet" href="/static/css/style.css" />
         ) : (
